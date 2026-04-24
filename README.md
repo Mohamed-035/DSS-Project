@@ -25,7 +25,7 @@ The project includes:
 app.py
 trains.xsl
 transport.xml
-templates/
+templates/ 
 static/
 
 ---
@@ -36,6 +36,8 @@ static/
 - XSLT
 - Python
 - Flask
+- html
+- css
 
 ---
 
