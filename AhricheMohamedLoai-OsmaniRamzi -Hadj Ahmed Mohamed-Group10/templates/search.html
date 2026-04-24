@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block title %}Search by Code{% endblock %}
+
+{% block content %}
+<h2>🔍 Search by Trip Code (DOM)</h2>
+
+<div class="search-card">
+    <form method="POST">
+        <div class="form-grid">
+            <div class="form-group">
+                <label>Trip Code</label>
+                <input type="text" name="code" placeholder="ex: T101" value="{{ code or '' }}" required/>
+            </div>
+        </div>
+        <button class="btn btn-primary" type="submit">🔍 Search</button>
+        <a href="{{ url_for('search') }}"><button class="btn btn-secondary" type="button">✖ Reset</button></a>
+    </form>
+</div>
+
+{% if searched %}
+    {% if trip %}
+    <div class="alert alert-success">✅ Trip found: <strong>{{ trip.code }}</strong></div>
+    <div class="trip-detail-card">
+        <div class="trip-header">
+            <span class="trip-code">{{ trip.code }}</span>
+            <div class="route-display">
+                <span>{{ trip['from'] }}</span>
+                <span class="arrow">→</span>
+                <span>{{ trip.to }}</span>
+            </div>
+            <span class="badge badge-{{ trip.type | lower }}">{{ trip.type }}</span>
+        </div>
+        <table>
+            <thead>
+                <tr><th>Schedule</th><th>Train Type</th><th>Class</th><th>Price (DA)</th></tr>
+            </thead>
+            <tbody>
+                {% for cls in trip.classes %}
+                <tr>
+                    <td data-label="Schedule">{{ trip.time }}</td>
+                    <td data-label="Train Type">{{ trip.type }}</td>
+                    <td data-label="Class">
+                        {% if cls[0] == 'VIP' %}<strong style="color:#c0392b;">VIP</strong>
+                        {% else %}{{ cls[0] }}{% endif %}
+                    </td>
+                    <td data-label="Price (DA)">{{ cls[1] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <div class="alert alert-warning">⚠️ No trip found with code <strong>{{ code }}</strong>.</div>
+    {% endif %}
+{% endif %}
+{% endblock %}

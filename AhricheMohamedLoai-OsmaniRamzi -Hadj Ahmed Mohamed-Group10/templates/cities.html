@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block title %}Filter by Cities{% endblock %}
+
+{% block content %}
+<h2>🗺️ Filter by Departure &amp; Arrival</h2>
+
+<div class="search-card">
+    <form method="POST">
+        <div class="form-grid">
+            <div class="form-group">
+                <label>Departure City</label>
+                <select name="dep">
+                    <option value="">-- Select --</option>
+                    {% for city in cities %}
+                    <option value="{{ city }}" {% if dep == city %}selected{% endif %}>{{ city }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Arrival City</label>
+                <select name="arr">
+                    <option value="">-- Select --</option>
+                    {% for city in cities %}
+                    <option value="{{ city }}" {% if arr == city %}selected{% endif %}>{{ city }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <button class="btn btn-primary" type="submit">⚡ Filter</button>
+        <a href="{{ url_for('cities') }}"><button class="btn btn-secondary" type="button">✖ Reset</button></a>
+    </form>
+</div>
+
+{% if searched %}
+    {% if data %}
+    <div class="alert alert-success">✅ {{ data | length }} line(s) found from <strong>{{ dep }}</strong> to <strong>{{ arr }}</strong>.</div>
+    {% for d in data %}
+        <h2>Line {{ d.line }} ( {{ dep }} → {{ arr }} )</h2>
+        {% for t in d.trips %}
+        <h4>Trip No. {{ t.code }} – {{ t.type }}</h4>
+        <table>
+            <thead><tr><th>Schedule</th><th>Train Type</th><th>Class</th><th>Price (DA)</th></tr></thead>
+            <tbody>
+                {% for cls in t.classes %}
+                <tr>
+                    <td data-label="Schedule">{{ t.time }}</td>
+                    <td data-label="Train Type">{{ t.type }}</td>
+                    <td data-label="Class">
+                        {% if cls[0] == 'VIP' %}<strong style="color:#c0392b;">VIP</strong>
+                        {% else %}{{ cls[0] }}{% endif %}
+                    </td>
+                    <td data-label="Price (DA)">{{ cls[1] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endfor %}
+        <hr/>
+    {% endfor %}
+    {% else %}
+    <div class="alert alert-warning">⚠️ No trips found from <strong>{{ dep }}</strong> to <strong>{{ arr }}</strong>.</div>
+    {% endif %}
+{% endif %}
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}Filter by Price{% endblock %}
+
+{% block content %}
+<h2>💰 Filter by Maximum Price</h2>
+
+<div class="search-card">
+    <form method="POST">
+        <div class="form-grid">
+            <div class="form-group">
+                <label>Max Price (DA)</label>
+                <input type="number" name="maxp" placeholder="ex: 1500" value="{{ maxp or '' }}" min="0" required/>
+            </div>
+        </div>
+        <button class="btn btn-primary" type="submit">⚡ Filter</button>
+        <a href="{{ url_for('by_price') }}"><button class="btn btn-secondary" type="button">✖ Reset</button></a>
+    </form>
+</div>
+
+{% if searched %}
+    {% if data %}
+    <div class="alert alert-success">✅ {{ data | length }} trip(s) with price ≤ <strong>{{ maxp }} DA</strong>.</div>
+    <table>
+        <thead><tr><th>Line</th><th>Code</th><th>Schedule</th><th>Train Type</th><th>Class</th><th>Price (DA)</th></tr></thead>
+        <tbody>
+            {% for d in data %}
+                {% for cls in d.classes %}
+                <tr>
+                    <td>{{ d.line }}</td>
+                    <td>{{ d.code }}</td>
+                    <td data-label="Schedule">{{ d.time }}</td>
+                    <td data-label="Train Type"><span class="badge badge-{{ d.type | lower }}">{{ d.type }}</span></td>
+                    <td data-label="Class">
+                        {% if cls[0] == 'VIP' %}<strong style="color:#c0392b;">VIP</strong>
+                        {% else %}{{ cls[0] }}{% endif %}
+                    </td>
+                    <td data-label="Price (DA)">{{ cls[1] }}</td>
+                </tr>
+                {% endfor %}
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <div class="alert alert-warning">⚠️ No trips found with price ≤ <strong>{{ maxp }} DA</strong>.</div>
+    {% endif %}
+{% endif %}
+{% endblock %}

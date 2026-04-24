@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>{% block title %}Railway Trip Management{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"/>
+</head>
+<body>
+<div class="container">
+
+    <div class="header">
+        TP - Do not copy directly / This page is implemented by the student:
+        Ahriche Mohamed Loai, Osmani Ramzi, Hadj Ahmed Mohamed / Group: 10
+    </div>
+
+    <h1>Train Trips Report</h1>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <span class="brand">🚆 Railway</span>
+        <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
+            <a href="{{ url_for('home') }}">🏠 Home</a>
+            <a href="{{ url_for('search') }}">🔍 Search by Code</a>
+            <a href="{{ url_for('cities') }}">🗺️ Filter by Cities</a>
+            <a href="{{ url_for('by_type') }}">🚄 Filter by Type</a>
+            <a href="{{ url_for('by_price') }}">💰 Filter by Price</a>
+            <a href="{{ url_for('stats') }}">📊 Statistics</a>
+        </div>
+    </nav>
+
+    {% block content %}{% endblock %}
+
+</div>
+</body>
+</html>

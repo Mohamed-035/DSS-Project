@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}Statistics{% endblock %}
+
+{% block content %}
+<h2>📊 Statistics (ElementTree)</h2>
+
+<!-- Trips per type -->
+<h3>Number of Trips per Train Type</h3>
+{% set type_colors = {'Normal': '#2c6e9e', 'Rapid': '#e67e22', 'Coradia': '#27ae60', 'Express': '#8e44ad'} %}
+<div class="stats-grid">
+   {% for t_type, count in type_counts.items() %}
+{% set color = type_colors.get(t_type, '#2c6e9e') %}
+<div class="stat-card" style="--card-color: {{ color }};">
+    <h4 style="border: none; background: none; padding: 0; margin: 0 0 0.5rem 0;">
+        <span class="badge badge-{{ t_type | lower }}">{{ t_type }}</span>
+    </h4>
+    <div class="stat-value">{{ count }}</div>
+    <div class="stat-label">trip(s)</div>
+</div>
+{% endfor %}
+</div>
+
+<hr/>
+
+<!-- Cheapest / Most expensive per line -->
+<h3>Cheapest &amp; Most Expensive Trip per Line</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Line</th>
+            <th>Route</th>
+            <th>💚 Cheapest</th>
+            <th>💸 Most Expensive</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for ls in line_stats %}
+        <tr>
+            <td><strong>{{ ls.line }}</strong></td>
+            <td>{{ ls.dep }} → {{ ls.arr }}</td>
+            <td style="color:#1f6e43;">
+                {{ ls.cheap[0] }} ({{ ls.cheap[1] }})<br/>
+                <strong>{{ ls.cheap[2] }} DA</strong>
+            </td>
+            <td style="color:#c0392b;">
+                {{ ls.exp[0] }} ({{ ls.exp[1] }})<br/>
+                <strong>{{ ls.exp[2] }} DA</strong>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}Home – Railway Trips{% endblock %}
+
+{% block content %}
+
+<!-- Stats summary -->
+<div class="stats-grid">
+    <div class="stat-card">
+        <div class="stat-value">{{ total_lines }}</div>
+        <div class="stat-label">Lines</div>
+    </div>
+    <div class="stat-card" style="border-left-color:#27ae60;">
+        <div class="stat-value">{{ total_trips }}</div>
+        <div class="stat-label">Total Trips</div>
+    </div>
+    <div class="stat-card" style="border-left-color:#e67e22;">
+        <div class="stat-value">{{ total_types }}</div>
+        <div class="stat-label">Train Types</div>
+    </div>
+</div>
+
+<!-- All trips grouped by line -->
+{% set ns = namespace(current_line='') %}
+{% for trip in trips %}
+    {% if trip.line_code != ns.current_line %}
+        {% set ns.current_line = trip.line_code %}
+        {% if not loop.first %}<hr/>{% endif %}
+        <h2>Line: {{ trip.line_code }} ( {{ trip.departure }} → {{ trip.arrival }} )</h2>
+        <h3>Detailed List of Trips:</h3>
+    {% endif %}
+
+    <h4>Trip No. {{ trip.trip_code }} : departure: {{ trip.departure }} &nbsp;|&nbsp; Arrival: {{ trip.arrival }}</h4>
+    <table>
+        <thead>
+            <tr><th>Schedule</th><th>Train Type</th><th>Class</th><th>Price (DA)</th></tr>
+        </thead>
+        <tbody>
+            {% for cls in trip.classes %}
+            <tr>
+                <td data-label="Schedule">{{ trip.dep_time }} - {{ trip.arr_time }}</td>
+                <td data-label="Train Type">{{ trip.type }}</td>
+                <td data-label="Class">
+                    {% if cls.type == 'VIP' %}<strong style="color:#c0392b;">VIP</strong>
+                    {% else %}{{ cls.type }}{% endif %}
+                </td>
+                <td data-label="Price (DA)">{{ cls.price }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endfor %}
+
+{% endblock %}

@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="trains.xsl"?>
+
+<transport>
+    
+    <!-- List of stations -->
+    <stations>
+        <station id="S01" name="Oran"/>
+        <station id="S02" name="Algiers"/>
+        <station id="S03" name="Blida"/>
+        <station id="S04" name="Boufarik"/>
+        <station id="S05" name="Birtouta"/>
+        <station id="S06" name="Hussein Dey"/>
+        <station id="S07" name="Ain Naadja"/>
+        <station id="S08" name="Baba Ali"/>
+        <station id="S09" name="Chiffa"/>
+        <station id="S10" name="El Affroun"/>
+        <station id="S11" name="Tipaza"/>
+        <station id="S12" name="Tizi Ouzou"/>
+        <station id="S13" name="Bejaia"/>
+        <station id="S14" name="Sidi Bel Abbes"/>
+        <station id="S15" name="Constantine"/>
+    </stations>
+    
+    <!-- Train lines -->
+    <lines>
+        
+        <line code="L01" departure="S01" arrival="S02">
+            <trips>
+                
+                <trip code="T101" type="Normal">
+                    <schedule departure="06:25" arrival="11:30"/>
+                    <class type="Economy" price="900"/>
+                    <days>mon,tue,wed,thu,fri</days>
+                </trip>
+                
+                <trip code="T102" type="Rapid">
+                    <schedule departure="08:00" arrival="12:30"/>
+                    <class type="Economy" price="1020"/>
+                    <class type="VIP" price="2500"/>
+                    <days>mon,wed,fri</days>
+                </trip>
+                
+                <trip code="T103" type="Coradia">
+                    <schedule departure="15:00" arrival="18:30"/>
+                    <class type="Economy" price="1200"/>
+                    <days>tue,thu,sun</days>
+                </trip>
+                
+            </trips>
+        </line>
+        
+        <line code="L02" departure="S02" arrival="S01">
+            <trips>
+                
+                <trip code="T201" type="Normal">
+                    <schedule departure="06:25" arrival="11:30"/>
+                    <class type="Economy" price="900"/>
+                    <days>mon,tue,wed,thu,fri</days>
+                </trip>
+                
+                <trip code="T202" type="Coradia">
+                    <schedule departure="08:00" arrival="11:30"/>
+                    <class type="Economy" price="1200"/>
+                    <days>tue,thu,sun</days>
+                </trip>
+                
+                <trip code="T203" type="Rapid">
+                    <schedule departure="13:00" arrival="16:30"/>
+                    <class type="Economy" price="1300"/>
+                    <class type="VIP" price="2700"/>
+                    <days>mon,wed,fri</days>
+                </trip>
+                
+            </trips>
+        </line>
+        
+        <line code="L03" departure="S03" arrival="S02">
+            <trips>
+                
+                <trip code="T301" type="Normal">
+                    <schedule departure="07:00" arrival="09:30"/>
+                    <class type="Economy" price="800"/>
+                    <days>mon,tue,wed,thu,fri</days>
+                </trip>
+                
+                <trip code="T302" type="Express">
+                    <schedule departure="09:00" arrival="11:00"/>
+                    <class type="Economy" price="1200"/>
+                    <days>sat,sun</days>
+                </trip>
+                
+            </trips>
+        </line>
+        
+        <line code="L04" departure="S04" arrival="S05">
+            <trips>
+                
+                <trip code="T401" type="Coradia">
+                    <schedule departure="08:30" arrival="10:00"/>
+                    <class type="Economy" price="1100"/>
+                    <days>mon,tue,wed,thu,fri</days>
+                </trip>
+                
+                <trip code="T402" type="Rapid">
+                    <schedule departure="12:00" arrival="13:30"/>
+                    <class type="Economy" price="1000"/>
+                    <class type="VIP" price="2200"/>
+                    <days>sat,sun</days>
+                </trip>
+                
+            </trips>
+        </line>
+        
+        <line code="L05" departure="S01" arrival="S03">
+            <trips>
+                
+                <trip code="T501" type="Express">
+                    <schedule departure="14:00" arrival="17:00"/>
+                    <class type="Economy" price="1300"/>
+                    <days>mon,wed,fri</days>
+                </trip>
+                
+                <trip code="T502" type="Rapid">
+                    <schedule departure="16:00" arrival="19:30"/>
+                    <class type="Economy" price="1400"/>
+                    <class type="VIP" price="3000"/>
+                    <days>tue,thu,sun</days>
+                </trip>
+                
+            </trips>
+        </line>
+        
+        <line code="L06" departure="S02" arrival="S06">
+            <trips>
+                
+                <trip code="T601" type="Normal">
+                    <schedule departure="07:30" arrival="08:15"/>
+                    <class type="Economy" price="400"/>
+                    <days>mon,tue,wed,thu,fri</days>
+                </trip>
+                
+                <trip code="T602" type="Rapid">
+                    <schedule departure="12:30" arrival="13:10"/>
+                    <class type="Economy" price="450"/>
+                    <class type="VIP" price="900"/>
+                    <days>mon,wed,fri</days>
+                </trip>
+                
+            </trips>
+        </line>
+        
+        <line code="L07" departure="S02" arrival="S07">
+            <trips>
+                
+                <trip code="T701" type="Express">
+                    <schedule departure="09:00" arrival="09:45"/>
+                    <class type="Economy" price="500"/>
+                    <days>mon,tue,wed,thu,fri</days>
+                </trip>
+                
+                <trip code="T702" type="Rapid">
+                    <schedule departure="15:00" arrival="15:40"/>
+                    <class type="Economy" price="550"/>
+                    <class type="VIP" price="1100"/>
+                    <days>sat,sun</days>
+                </trip>
+                
+            </trips>
+        </line>
+        
+        <line code="L08" departure="S10" arrival="S09">
+            <trips>
+                
+                <trip code="T801" type="Normal">
+                    <schedule departure="06:00" arrival="07:15"/>
+                    <class type="Economy" price="600"/>
+                    <days>mon,tue,wed,thu,fri</days>
+                </trip>
+                
+                <trip code="T802" type="Coradia">
+                    <schedule departure="13:00" arrival="14:10"/>
+                    <class type="Economy" price="700"/>
+                    <days>sat,sun</days>
+                </trip>
+                
+            </trips>
+        </line>
+        
+        <line code="L09" departure="S11" arrival="S02">
+            <trips>
+                
+                <trip code="T901" type="Rapid">
+                    <schedule departure="08:00" arrival="09:30"/>
+                    <class type="Economy" price="950"/>
+                    <class type="VIP" price="2000"/>
+                    <days>mon,wed,fri</days>
+                </trip>
+                
+                <trip code="T902" type="Express">
+                    <schedule departure="17:00" arrival="18:30"/>
+                    <class type="Economy" price="900"/>
+                    <days>tue,thu,sun</days>
+                </trip>
+                
+            </trips>
+        </line>
+        
+        <line code="L10" departure="S12" arrival="S13">
+            <trips>
+                
+                <trip code="T1001" type="Normal">
+                    <schedule departure="06:45" arrival="09:30"/>
+                    <class type="Economy" price="1200"/>
+                    <days>mon,tue,wed,thu,fri</days>
+                </trip>
+                
+                <trip code="T1002" type="Express">
+                    <schedule departure="10:00" arrival="12:30"/>
+                    <class type="Economy" price="1400"/>
+                    <days>sat,sun</days>
+                </trip>
+                
+            </trips>
+        </line>
+        
+        <line code="L11" departure="S14" arrival="S01">
+            <trips>
+                
+                <trip code="T1101" type="Rapid">
+                    <schedule departure="07:00" arrival="12:00"/>
+                    <class type="Economy" price="1500"/>
+                    <class type="VIP" price="3000"/>
+                    <days>mon,wed,fri</days>
+                </trip>
+                
+            </trips>
+        </line>
+        
+        <line code="L12" departure="S15" arrival="S02">
+            <trips>
+                
+                <trip code="T1201" type="Coradia">
+                    <schedule departure="06:00" arrival="16:30"/>
+                    <class type="Economy" price="2500"/>
+                    <class type="VIP" price="4500"/>
+                    <days>mon,tue,wed,thu,fri</days>
+                </trip>
+                
+            </trips>
+        </line>
+        
+    </lines>
+    
+</transport>
